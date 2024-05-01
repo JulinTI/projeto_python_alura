@@ -1,6 +1,7 @@
 import os 
 import time
 
+restaurantes = []
 
 def exibir_nome():
     print('𝕊𝕒𝕓𝕠𝕣 𝔼𝕩𝕡𝕣𝕖𝕤𝕤\n')
@@ -22,12 +23,21 @@ def finalizar_app():
     time.sleep(2)
 
 
+def cadastrar_restaurante():
+    os.system('cls')
+    print('Cadastro de novos restaurantes\n')
+    nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
+    restaurantes.append(nome_do_restaurante)
+    print(f'O restaurate {nome_do_restaurante} foi cadastrado com sucesso!\n')
+    input('digite uma tecla para voltar ao menu principal ')
+    main()
+
 def escolher_opcoes():
     try:
         opcao_escolhida = int(input('Escolha uma opção: '))
 
         if opcao_escolhida == 1:
-            print('Cadastrar Restaurante')
+            cadastrar_restaurante()
         elif opcao_escolhida == 2:
             print('Listar Restaurantes')
         elif opcao_escolhida == 3:
