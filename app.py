@@ -1,7 +1,7 @@
 import os 
 import time
 
-restaurantes = []
+restaurantes = [{'nome': 'Cantina Mineira', 'categoria': 'Comida Mineira', 'ativo': True}, {'nome': 'Sushi Japa', 'categoria': 'Comida Japonesa', 'ativo': False}]
 
 def exibir_nome():
     print('𝕊𝕒𝕓𝕠𝕣 𝔼𝕩𝕡𝕣𝕖𝕤𝕤\n')
@@ -14,14 +14,16 @@ def exibir_opcoes():
 
 def opcao_invalida():
     print('Opção inválida\n')
-    input('Digite uma tecla para voltar ao menu principal: ')
-    main()
+    voltar_ao_menu()
 
 def finalizar_app():
     os.system('cls')
     print('Finalizando app...')
     time.sleep(2)
 
+def voltar_ao_menu():
+    input('\nDigite uma tecla para voltar ao menu principal: ')
+    main()
 
 def cadastrar_restaurante():
     os.system('cls')
@@ -33,7 +35,6 @@ def cadastrar_restaurante():
     opcao_fornecida = opcao.capitalize()
     
     if opcao_fornecida != 'Sim':
-        print('Opçao invalida\n')
         print('Voltando ao menu principal ')
         time.sleep(2)
         main()
@@ -46,9 +47,12 @@ def listar_restaurantes():
     print('Listando restaurantes: ')
 
     for restaurante in restaurantes:
-        print(f'- {restaurante}\n')
-        input('Digite uma tecla para voltar ao menu principal: ')
-        main()
+        nome_cadastrado = restaurante['nome']
+        categoria = restaurante['categoria']
+        ativo = restaurante['ativo']
+        print(f'- {nome_cadastrado} | {categoria} | {ativo}')
+    
+    voltar_ao_menu()
 
 def escolher_opcoes():
     try:
