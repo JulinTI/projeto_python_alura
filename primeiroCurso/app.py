@@ -7,9 +7,9 @@ def exibir_nome():
     print('𝕊𝕒𝕓𝕠𝕣 𝔼𝕩𝕡𝕣𝕖𝕤𝕤\n')
 
 def exibir_opcoes():
-    print('1. Cadastrar Restaurante')
-    print('2. Listar Restaurante')
-    print('3. Ativar Restaurante')
+    print('1. Cadastrar restaurante')
+    print('2. Listar restaurante')
+    print('3. Alternar estado do restaurante')
     print('4. Sair')
 
 def opcao_invalida():
@@ -26,8 +26,7 @@ def voltar_ao_menu():
     main()
 
 def cadastrar_restaurante():
-    os.system('cls')
-    print('Cadastro de novos restaurantes\n')
+    exibir_subtitulo('Cadastro de novos restaurantes')
     nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
     categoria = input(f'Digite o nome da categoria do restaurante {nome_do_restaurante}: ')
     dados_do_restaurante = {'nome': nome_do_restaurante, 'categoria': categoria, 'ativo': False}
@@ -44,9 +43,18 @@ def cadastrar_restaurante():
         cadastrar_restaurante()
 
 
-def alternando_estado_restaurante():
+
+def exibir_subtitulo(texto):
     os.system('cls')
-    print('Alternando o estado do restaurante')
+    linha = '*' * (len(texto))
+    print(linha)
+    print(texto)
+    print(linha)
+    print()
+
+
+def alternando_estado_restaurante():
+    exibir_subtitulo('Alternando o estado do restaurante')
     nome_restaurante = input('Digite o nome do restaurante que deseja alternar o estado: ')
     restaurante_encontrado = False
 
@@ -64,14 +72,14 @@ def alternando_estado_restaurante():
 
 
 def listar_restaurantes():
-    os.system('cls')
-    print('Listando restaurantes: ')
+    exibir_subtitulo('Listando restaurantes')
 
+    print(f'{'Nome do restaurante'.ljust(22)} | {'Categoria'.ljust(20)} | Status \n')
     for restaurante in restaurantes:
         nome_cadastrado = restaurante['nome']
         categoria = restaurante['categoria']
-        ativo = restaurante['ativo']
-        print(f'- {nome_cadastrado} | {categoria} | {ativo}')
+        ativo = 'Ativado' if restaurante['ativo'] else 'Desativado'
+        print(f'- {nome_cadastrado.ljust(20)} | {categoria.ljust(20)} | {ativo}')
     
     voltar_ao_menu()
 
